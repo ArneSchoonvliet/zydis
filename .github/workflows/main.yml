@@ -52,6 +52,13 @@ jobs:
         run: |
           cd build
           ctest -C Release --output-on-failure
+      - name: Archive tool
+        if: "matrix.image_name == windows-2022"
+        uses: actions/upload-artifact@v4
+        with:
+          name: tool-artifact
+          path: |
+            **/ZydisInfo.exe
 
   msbuild-build:
     name: MSBuild build (windows-2022)
